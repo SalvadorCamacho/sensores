@@ -42,33 +42,17 @@
 
       onValue(valor, (snapshot) => {
         valor = JSON.stringify(snapshot.val(), null, 3);
-      //  sensor1.innerText = valor;
+        //  sensor1.innerText = valor;
         if (valor == "1") {
           circuloId.style.backgroundColor = "green";
         } else {
           circuloId.style.backgroundColor = "red";
         }
       });
-      /*
-      get(child(dbref, "LED1")).then((snap) => {
-        if (snap.exists()) {
-          sensor1.innerText = JSON.stringify(snap.val(), null, 3);
-          valor = sensor1.innerText;
-          if (valor == "1") {
-            circuloId.style.backgroundColor = "green";
-          } else {
-            circuloId.style.backgroundColor = "red";
-          }
-        } else {
-          //  console.log(sensor1.innerText);
-          // console.log("No data found");
-        }
-      });
-      */
     </script>
 
     <div class="fondo-enterDetails center">
-      <h1>Sensor 1</h1> orig
+      <h1>Sensor 1</h1>
       <span class="fondo-dot" id="circuloId"></span>
       <pre id="valorBD"></pre>
     </div>
