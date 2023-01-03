@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Prueba led - WIFI</title>
+    <link rel="stylesheet" href="estilo.css" />
+    <style></style>
+  </head>
+  <body>
+    <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js";
+
+      // const databadvse = getDatabase(app);
+      const firebaseConfig = {
+        apiKey: "AIzaSyAmo2PGbWs24EN8yF8bTIQfUb0iiYoSjFI",
+        authDomain: "sensor-2-aafee.firebaseapp.com",
+        databaseURL: "https://sensor-2-aafee-default-rtdb.firebaseio.com",
+        projectId: "sensor-2-aafee",
+        storageBucket: "sensor-2-aafee.appspot.com",
+        messagingSenderId: "987265289469",
+        appId: "1:987265289469:web:0459bbc79130fb40e60294",
+      };
+
+      // Initialize Firebase
+      const app = initializeApp(firebaseConfig);
+      import {
+        get,
+        getDatabase,
+        child,
+        ref,
+        onValue,
+      } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js";
+
+      const db = getDatabase();
+
+      const sensor1 = document.getElementById("valorBD");
+
+      //const dbref = ref(db);
+      var valor = ref(db, "LED1");
+
+      onValue(valor, (snapshot) => {
+        valor = JSON.stringify(snapshot.val(), null, 3);
+      //  sensor1.innerText = valor;
+        if (valor == "1") {
+          circuloId.style.backgroundColor = "green";
+        } else {
+          circuloId.style.backgroundColor = "red";
+        }
+      });
+      /*
+      get(child(dbref, "LED1")).then((snap) => {
+        if (snap.exists()) {
+          sensor1.innerText = JSON.stringify(snap.val(), null, 3);
+          valor = sensor1.innerText;
+          if (valor == "1") {
+            circuloId.style.backgroundColor = "green";
+          } else {
+            circuloId.style.backgroundColor = "red";
+          }
+        } else {
+          //  console.log(sensor1.innerText);
+          // console.log("No data found");
+        }
+      });
+      */
+    </script>
+
+    <div class="fondo-enterDetails center">
+      <h1>Sensor 1</h1> orig
+      <span class="fondo-dot" id="circuloId"></span>
+      <pre id="valorBD"></pre>
+    </div>
+  </body>
+</html>
